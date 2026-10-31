@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import { NavbarPage } from "@/components/Navbar/NavbarPage";
+import { ToastContainer } from "react-toastify";
 
 const jakarta = Plus_Jakarta_Sans({
   variable: "--font-jakarta",
@@ -26,6 +27,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <div className="mt-10">
           {children}
         </div>
+        <ToastContainer></ToastContainer>
       </body>
     </html>
   );
