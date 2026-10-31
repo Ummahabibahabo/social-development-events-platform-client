@@ -29,6 +29,7 @@ const RegisterPage = () => {
     e: React.ChangeEvent<HTMLInputElement>
   ) => {
     const value = e.target.value;
+
     setPassword(value);
 
     if (!/[A-Z]/.test(value)) {
@@ -55,7 +56,7 @@ const RegisterPage = () => {
       image: string;
       password: string;
     };
-
+console.log(user)
     const newErrors = {
       name: user.name.trim() ? "" : "Name is required",
       email: user.email.trim() ? "" : "Email is required",
@@ -64,13 +65,18 @@ const RegisterPage = () => {
 
     setErrors(newErrors);
 
-    if (!user.name.trim() || !user.email.trim() || !user.image.trim()) {
+    if (
+      !user.name.trim() ||
+      !user.email.trim() ||
+      !user.image.trim() ||
+      !password
+    ) {
       toast.error("Please fill up all fields");
       return;
     }
 
-    if (passwordError || password.length === 0) {
-      toast.error(passwordError || "Password is required");
+    if (passwordError) {
+      toast.error(passwordError);
       return;
     }
 
@@ -79,14 +85,15 @@ const RegisterPage = () => {
       callbackURL: "/",
     });
 
-    if (error) {
-      toast.error(error.message);
-      return;
+      if (data) {
+        console.log(data)
+      toast.success("Successful Your Register");
+      router.push("/login");
     }
 
-    if (data) {
-      toast.success("Successfully registered!");
-      router.push("/login");
+    if (error) {
+      console.log(error);
+      toast.error(error.message);
     }
   };
 
@@ -99,7 +106,7 @@ const RegisterPage = () => {
             <h1 className="text-3xl font-bold text-black">
               Create Account
             </h1>
-            <p className="text-[16px] text-gray-500 mt-2">
+            <p className=" text-[16px] text-gray-500 mt-2">
               Register to get started with us!
             </p>
           </div>

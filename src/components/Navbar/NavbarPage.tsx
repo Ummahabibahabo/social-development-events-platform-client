@@ -13,7 +13,9 @@ import {
   MdOutlineCreateNewFolder,
   MdOutlineEventNote,
 } from "react-icons/md";
-import { TbLogin2 } from "react-icons/tb";
+import NavLinkPage from "./NavLinkPage";
+import { authClient } from "@/app/lib/auth-client";
+
 
 export const NavbarPage = () => {
   const pathname = usePathname();
@@ -26,7 +28,8 @@ export const NavbarPage = () => {
   const closeMenu = () => {
     setMenuOpen(false);
   };
-
+ const { data: session } = authClient.useSession();
+  const user = session?.user;
   return (
     <nav className="flex justify-between items-center gap-3 relative w-full">
 
@@ -74,7 +77,7 @@ export const NavbarPage = () => {
           <p>Upcoming Events</p>
         </Link>
 
-        <Link
+        {user&&(<Link
           href="/createEvent"
           className={`flex items-center gap-1.5 text-sm lg:text-[16px] ${
             pathname === "/createEvent"
@@ -84,7 +87,7 @@ export const NavbarPage = () => {
         >
           <MdOutlineCreateNewFolder />
           <p>Create Event</p>
-        </Link>
+        </Link>)}
 
       </div>
 
@@ -101,32 +104,16 @@ export const NavbarPage = () => {
           />
         </button>
 
-        {/* Profile */}
-        <Link
-          className={`hidden md:flex items-center gap-1.5 text-[16px] ${
-            pathname === "/profile"
-              ? "text-[#15A1BF] underline underline-offset-8"
-              : "text-black"
-          }`}
-          href="/profile"
-        >
-          <FaRegUser />
-          <p>Profile</p>
-        </Link>
-
-        {/* Login Button */}
-        <Link href="/login">
-          <button className="flex justify-center items-center gap-1.5 sm:gap-2.5 px-2.5 sm:px-3 py-2 rounded-xl bg-cyan-600 text-white text-sm sm:text-base font-semibold">
-            <TbLogin2 />
-            Login
-          </button>
-        </Link>
+        <div className="hidden md:flex">
+           <NavLinkPage></NavLinkPage>
+    </div>
 
       </div>
 
       {/* Mobile Navigation */}
       {menuOpen && (
         <div className="absolute top-full left-0 mt-3 w-full sm:w-64 bg-white shadow-lg rounded-xl p-4 flex flex-col gap-4 md:hidden z-50">
+          <NavLinkPage></NavLinkPage>
 <Link
             href="/profile"
             onClick={closeMenu}
@@ -152,7 +139,7 @@ export const NavbarPage = () => {
             <p>Upcoming Events</p>
           </Link>
 
-          <Link
+         {user&&(<Link
             href="/createEvent"
             onClick={closeMenu}
             className={`flex items-center gap-2 text-[16px] ${
@@ -163,7 +150,7 @@ export const NavbarPage = () => {
           >
             <MdOutlineCreateNewFolder />
             <p>Create Event</p>
-          </Link>
+          </Link>)} 
 
           
 

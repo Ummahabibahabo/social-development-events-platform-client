@@ -2,13 +2,17 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import React, { useState } from "react";
+import { authClient } from "../lib/auth-client";
+import { toast } from "react-toastify";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
@@ -32,6 +36,32 @@ const LoginPage = () => {
     }
   };
 
+  const handleLoginBtn = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    const user = Object.fromEntries(formData.entries()) as {
+      email: string;
+      password: string;
+    };
+
+    console.log(user);
+
+    const { data, error } = await authClient.signIn.email({
+      ...user,
+      callbackURL: "/",
+    });
+
+    if (data) {
+      console.log(data);
+      toast.success("Successful Your Register");
+    }
+
+    if (error) {
+      console.log(error);
+      toast.error(error.message);
+    }
+  };
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50 px-4 py-10">
       <div className="w-full max-w-md">
@@ -47,7 +77,7 @@ const LoginPage = () => {
         </div>
 
         {/* Login Form */}
-        <form>
+        <form onSubmit={handleLoginBtn}>
           <fieldset className="fieldset bg-white shadow-xl border border-gray-200 rounded-2xl p-6 sm:p-8">
 
             {/* Email */}
@@ -76,15 +106,25 @@ const LoginPage = () => {
               Password
             </label>
 
-            <input
-              type="password"
-              name="password"
-              value={password}
-              onChange={handlePasswordChange}
-              className="input w-full bg-gray-50 border-gray-300 focus:outline-cyan-500 rounded-lg"
-              placeholder="Enter your password"
-              required
-            />
+            <div className="relative">
+              <input
+                type={showPassword ? "text" : "password"}
+                name="password"
+                value={password}
+                onChange={handlePasswordChange}
+                className="input w-full bg-gray-50 border-gray-300 focus:outline-cyan-500 rounded-lg"
+                placeholder="Enter your password"
+                required
+              />
+
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500"
+              >
+                {showPassword ? <FaEye className="text-2xl" /> :<FaEyeSlash className="text-2xl"/> }
+              </button>
+            </div>
 
             {passwordError && (
               <p className="text-xs text-red-500 mt-1">
