@@ -6,10 +6,10 @@ import React, { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { authClient } from "../lib/auth-client";
 import { toast } from "react-toastify";
-import { useRouter } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 
 const RegisterPage = () => {
-  const router = useRouter();
+
 
   const [password, setPassword] = useState("");
   const [passwordError, setPasswordError] = useState("");
@@ -88,7 +88,7 @@ console.log(user)
       if (data) {
         console.log(data)
       toast.success("Successful Your Register");
-      router.push("/login");
+     redirect("/")
     }
 
     if (error) {
