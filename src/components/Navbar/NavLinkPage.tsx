@@ -1,3 +1,4 @@
+
 "use client";
 
 import { authClient } from "@/app/lib/auth-client";
@@ -24,31 +25,34 @@ import {
 
 const NavLinkPage = () => {
   const pathname = usePathname();
-  
+  const router = useRouter();
 
   const { data: session } = authClient.useSession();
   const user = session?.user;
 
-    const handleLogoutBtn = async() => {
-      await authClient.signOut()
-  }
+  // Logout function
+  const handleLogoutBtn = async () => {
+    await authClient.signOut();
+    router.push("/login");
+  };
 
   return (
     <div className="flex items-center gap-2 sm:gap-4">
       {user ? (
         <Popover>
-          <PopoverTrigger >
-            <button className="rounded-full focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2">
+          <PopoverTrigger>
+            <div className="rounded-full cursor-pointer focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2">
               <Avatar className="h-10 w-10 border-2 border-cyan-500 shadow-md cursor-pointer">
                 <AvatarImage
                   referrerPolicy="no-referrer"
                   src={user.image || ""}
                 />
+
                 <AvatarFallback className="bg-cyan-100 text-cyan-700 font-bold">
                   {user.name?.charAt(0) || "U"}
                 </AvatarFallback>
               </Avatar>
-            </button>
+            </div>
           </PopoverTrigger>
 
           <PopoverContent
@@ -62,6 +66,7 @@ const NavLinkPage = () => {
                   referrerPolicy="no-referrer"
                   src={user.image || ""}
                 />
+
                 <AvatarFallback className="bg-cyan-100 text-cyan-700 text-2xl font-bold">
                   {user.name?.charAt(0) || "U"}
                 </AvatarFallback>
@@ -78,6 +83,7 @@ const NavLinkPage = () => {
             </PopoverHeader>
 
             <div className="px-4 pb-4 space-y-2">
+              {/* Profile Link */}
               <Link
                 href="/profile"
                 className={`flex items-center gap-3 rounded-xl px-4 py-3 transition ${
@@ -90,8 +96,9 @@ const NavLinkPage = () => {
                 <span className="font-medium">My Profile</span>
               </Link>
 
+              {/* Logout Button */}
               <button
-               onClick={handleLogoutBtn}
+                onClick={handleLogoutBtn}
                 className="flex w-full items-center gap-3 rounded-xl bg-red-50 px-4 py-3 text-red-600 font-semibold transition hover:bg-red-100"
               >
                 <LogOut size={18} />
@@ -101,11 +108,12 @@ const NavLinkPage = () => {
           </PopoverContent>
         </Popover>
       ) : (
-        <Link href="/login">
-          <button className="flex justify-center items-center gap-1.5 sm:gap-2.5 px-2.5 sm:px-3 py-2 rounded-xl bg-cyan-600 text-white text-sm sm:text-base font-semibold hover:bg-cyan-700 transition">
-            <TbLogin2 />
-            Login
-          </button>
+        <Link
+          href="/login"
+          className="flex justify-center items-center gap-1.5 sm:gap-2.5 px-2.5 sm:px-3 py-2 rounded-xl bg-cyan-600 text-white text-sm sm:text-base font-semibold hover:bg-cyan-700 transition"
+        >
+          <TbLogin2 />
+          Login
         </Link>
       )}
     </div>

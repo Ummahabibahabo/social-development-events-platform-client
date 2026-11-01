@@ -49,7 +49,7 @@ const UpcomingEventCard = ({ upcomingData }: UpcomingEventCardProps) => {
                 fill
                 unoptimized
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                className="object-cover transition duration-500 group-hover:scale-110"
+                className="object-cover object-top transition duration-500 group-hover:scale-110"
               />
             </div>
 
@@ -83,15 +83,15 @@ const UpcomingEventCard = ({ upcomingData }: UpcomingEventCardProps) => {
               </p>
 
               {/* View Event Button */}
-              <div className="mt-auto border-t border-gray-100 pt-4">
-                <Link
-                  href={`/events/${item._id}`}
-                  className="flex w-full items-center justify-center gap-2 rounded-lg border-2 border-[#15A1BF] px-3 py-3 text-sm font-semibold text-[#15A1BF] transition-all duration-300 hover:bg-[#15A1BF] hover:text-white active:scale-95"
-                >
-                  View Event
-                  <MdArrowForward />
-                </Link>
-              </div>
+             <div className="mt-auto border-t border-gray-100 pt-4">
+  <Link
+    href={`/upcomingEvents/${item._id}`}
+    className="flex w-full items-center justify-center gap-2 rounded-lg border-2 border-[#15A1BF] bg-[#15A1BF] px-3 py-3 text-sm font-semibold text-white transition-all duration-300 hover:border-[#11869F] hover:bg-[#11869F] active:scale-95"
+  >
+    View Event
+    <MdArrowForward />
+  </Link>
+</div>
             </div>
           </div>
         );
