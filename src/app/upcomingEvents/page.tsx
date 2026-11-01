@@ -1,8 +1,14 @@
+import UpcomingEventCard from "./upcomingsCard";
 
 
-const UpcomingEventPage = () => {
+const UpcomingEventPage = async() => {
+  const res = await fetch("http://localhost:5000/upcoming-event ")
+  const upcomingData = await res.json();
+  console.log(upcomingData)
   return (
-    <div>UpcomingEventPage</div>
+    <div>
+      <UpcomingEventCard upcomingData={upcomingData}></UpcomingEventCard>
+    </div>
   )
 }
 
