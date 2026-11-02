@@ -88,6 +88,7 @@ export const NavbarPage = () => {
           <MdOutlineCreateNewFolder />
           <p>Create Event</p>
         </Link>)}
+        
 
       </div>
 
@@ -151,6 +152,7 @@ export const NavbarPage = () => {
             <MdOutlineCreateNewFolder />
             <p>Create Event</p>
           </Link>)} 
+          
 
           
 
