@@ -10,6 +10,7 @@ import { FaRegUser } from "react-icons/fa";
 import { IoClose, IoMenuSharp } from "react-icons/io5";
 import { LuMoon } from "react-icons/lu";
 import {
+  MdEventAvailable,
   MdOutlineCreateNewFolder,
   MdOutlineEventNote,
 } from "react-icons/md";
@@ -88,6 +89,17 @@ export const NavbarPage = () => {
           <MdOutlineCreateNewFolder />
           <p>Create Event</p>
         </Link>)}
+        {user&&(<Link
+          href="/my-joining-event"
+          className={`flex items-center gap-1.5 text-sm lg:text-[16px] ${
+            pathname === "/my-joining-event"
+              ? "text-[#15A1BF] underline underline-offset-8"
+              : "text-black"
+          }`}
+        >
+          <MdEventAvailable />
+<p>My Joining Event</p>
+        </Link>)}
         
 
       </div>
@@ -151,6 +163,18 @@ export const NavbarPage = () => {
           >
             <MdOutlineCreateNewFolder />
             <p>Create Event</p>
+          </Link>)} 
+         {user&&(<Link
+            href="/my-joining-event"
+            onClick={closeMenu}
+            className={`flex items-center gap-2 text-[16px] ${
+              pathname === "/my-joining-event"
+                ? "text-[#15A1BF]"
+                : "text-gray-500"
+            }`}
+          >
+            <MdEventAvailable />
+<p>My Joining Event</p>
           </Link>)} 
           
 
