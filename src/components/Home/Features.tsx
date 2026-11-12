@@ -76,7 +76,7 @@ const Features = () => {
           return (
             <div
               key={index}
-              className="group p-6 sm:p-7 rounded-2xl bg-white border border-gray-100 shadow-xs hover:shadow-xl transition-all duration-300 hover:-translate-y-1 relative flex flex-col justify-between"
+              className="group p-6 sm:p-7 rounded-2xl bg-white border border-gray-200 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 relative flex flex-col justify-between"
             >
               <div>
                 <div className="flex items-center justify-between mb-5">

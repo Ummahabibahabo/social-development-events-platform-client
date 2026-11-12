@@ -101,19 +101,6 @@ const Banner = () => {
             </div>
           </div>
 
-          {/* Floating Badge 1 */}
-          <div className="hidden sm:flex absolute -bottom-5 -left-5 bg-white rounded-2xl p-3.5 shadow-lg border border-gray-100 items-center gap-3">
-            <div className="w-11 h-11 rounded-xl bg-[#C5F2A5] flex items-center justify-center text-[#123D32]">
-              <FaTree className="text-xl" />
-            </div>
-            <div>
-              <p className="text-xs text-gray-500 font-medium">Environment</p>
-              <p className="text-sm font-bold text-[#123D32]">
-                10,000+ Trees Planted
-              </p>
-            </div>
-          </div>
-
           {/* Floating Badge 2 */}
           <div className="hidden sm:flex absolute -top-5 -right-3 bg-white rounded-2xl p-3.5 shadow-lg border border-gray-100 items-center gap-3">
             <div className="w-11 h-11 rounded-xl bg-cyan-100 flex items-center justify-center text-[#15A1BF]">
