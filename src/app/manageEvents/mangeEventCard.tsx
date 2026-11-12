@@ -7,6 +7,7 @@ import {
   MdDeleteOutline,
 } from "react-icons/md";
 import { toast } from "react-toastify";
+import EditManagementDialogPage from "./EditManagementDialog";
 
 interface MangeEventCardProps {
   data: {
@@ -24,6 +25,7 @@ interface MangeEventCardProps {
 }
 
 const MangeEventCardPage = ({ data }: MangeEventCardProps) => {
+  console.log("manageEvent", data);
   const event = data.createEventData;
   const handleDeleteButton = async () => {
     const res = await fetch(
@@ -84,10 +86,7 @@ const MangeEventCardPage = ({ data }: MangeEventCardProps) => {
 
         {/* Buttons */}
         <div className="flex items-center gap-3 border-t border-gray-100 pt-4">
-          <button className="flex flex-1 items-center justify-center gap-2 rounded-lg bg-[#123D32] px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-[#1b5748]">
-            <MdEditNote className="text-xl" />
-            Edit
-          </button>
+          <EditManagementDialogPage data={data}></EditManagementDialogPage>
 
           <button
             onClick={handleDeleteButton}
