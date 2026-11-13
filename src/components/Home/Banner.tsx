@@ -20,12 +20,12 @@ const Banner = () => {
             </span>
           </div>
 
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#123D32] leading-tight">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#123D32] dark:text-white leading-tight">
             Empower Communities, <br />
             <span className="text-[#15A1BF]">Inspire Real Change</span> Together
           </h1>
 
-          <p className="text-gray-600 text-base sm:text-lg leading-relaxed max-w-xl">
+          <p className="text-gray-600 dark:text-gray-300 text-base sm:text-lg leading-relaxed max-w-xl">
             Join thousands of passionate changemakers and volunteers. Discover
             meaningful local initiatives—from tree plantations and donation
             drives to neighborhood cleanups and education support.
@@ -43,7 +43,7 @@ const Banner = () => {
 
             <Link
               href="/createEvent"
-              className="inline-flex items-center gap-2 border-2 border-[#123D32] text-[#123D32] font-semibold px-6 py-3.5 rounded-xl hover:bg-[#123D32] hover:text-white transition"
+              className="inline-flex items-center gap-2 border-2 border-[#123D32] text-[#123D32] dark:border-[#C5F2A5] dark:text-[#C5F2A5] font-semibold px-6 py-3.5 rounded-xl hover:bg-[#123D32] hover:text-white transition"
             >
               <MdOutlineAddCircleOutline className="text-lg" />
               Create an Event
@@ -51,12 +51,12 @@ const Banner = () => {
           </div>
 
           {/* Impact Stats */}
-          <div className="grid grid-cols-3 gap-4 pt-6 border-t border-emerald-900/10 max-w-lg">
+          <div className="grid grid-cols-3 gap-4 pt-6 border-t border-emerald-900/10 dark:border-emerald-700/30 max-w-lg">
             <div>
-              <p className="text-2xl sm:text-3xl font-extrabold text-[#123D32]">
+              <p className="text-2xl sm:text-3xl font-extrabold text-[#123D32] dark:text-white">
                 5,000+
               </p>
-              <p className="text-xs sm:text-sm text-gray-500 font-medium">
+              <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 font-medium">
                 Volunteers
               </p>
             </div>
@@ -64,15 +64,15 @@ const Banner = () => {
               <p className="text-2xl sm:text-3xl font-extrabold text-[#15A1BF]">
                 120+
               </p>
-              <p className="text-xs sm:text-sm text-gray-500 font-medium">
+              <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 font-medium">
                 Events Hosted
               </p>
             </div>
             <div>
-              <p className="text-2xl sm:text-3xl font-extrabold text-[#123D32]">
+              <p className="text-2xl sm:text-3xl font-extrabold text-[#123D32] dark:text-white">
                 25+
               </p>
-              <p className="text-xs sm:text-sm text-gray-500 font-medium">
+              <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 font-medium">
                 Cities Active
               </p>
             </div>

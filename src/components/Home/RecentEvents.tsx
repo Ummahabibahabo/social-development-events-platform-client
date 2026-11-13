@@ -21,10 +21,10 @@ const RecentEvents = ({ events }: RecentEventsProps) => {
           <span className="text-xs sm:text-sm font-bold tracking-wider uppercase text-[#15A1BF] bg-[#15A1BF]/10 px-3.5 py-1.5 rounded-full">
             Recent Upcoming Drives
           </span>
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#123D32]">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#123D32] dark:text-white">
             Recent Upcoming Events
           </h2>
-          <p className="text-gray-600 text-sm sm:text-base max-w-xl">
+          <p className="text-gray-600 dark:text-gray-300 text-sm sm:text-base max-w-xl">
             Explore the latest community service events added to our platform.
             Join a cause near you and make a direct difference.
           </p>
@@ -32,7 +32,7 @@ const RecentEvents = ({ events }: RecentEventsProps) => {
 
         <Link
           href="/upcomingEvents"
-          className="inline-flex items-center gap-2 text-sm font-semibold text-[#123D32] hover:text-[#15A1BF] transition group whitespace-nowrap self-start md:self-end"
+          className="inline-flex items-center gap-2 text-sm font-semibold text-[#123D32] dark:text-[#C5F2A5] hover:text-[#15A1BF] transition group whitespace-nowrap self-start md:self-end"
         >
           View All Events
           <MdArrowForward className="transition group-hover:translate-x-1" />
@@ -79,11 +79,11 @@ const RecentEvents = ({ events }: RecentEventsProps) => {
 
                 {/* Card Body */}
                 <div className="flex flex-1 flex-col p-5 sm:p-6 space-y-3">
-                  <h3 className="text-lg sm:text-xl font-bold text-gray-900 group-hover:text-[#123D32] transition line-clamp-1">
+                  <h3 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white group-hover:text-[#123D32] dark:group-hover:text-[#15A1BF] transition line-clamp-1">
                     {item.createEventData?.title}
                   </h3>
 
-                  <div className="space-y-1.5 text-xs sm:text-sm text-gray-500">
+                  <div className="space-y-1.5 text-xs sm:text-sm text-gray-500 dark:text-gray-400">
                     <p className="flex items-center gap-2">
                       <MdCalendarMonth className="text-base text-[#15A1BF] shrink-0" />
                       <span>{formattedDate}</span>
@@ -96,7 +96,7 @@ const RecentEvents = ({ events }: RecentEventsProps) => {
                     </p>
                   </div>
 
-                  <p className="line-clamp-2 text-xs sm:text-sm text-gray-600 leading-relaxed pt-1">
+                  <p className="line-clamp-2 text-xs sm:text-sm text-gray-600 dark:text-gray-300 leading-relaxed pt-1">
                     {item.createEventData?.description}
                   </p>
 

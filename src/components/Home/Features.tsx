@@ -60,10 +60,10 @@ const Features = () => {
         <span className="text-xs sm:text-sm font-bold tracking-wider uppercase text-[#15A1BF] bg-[#15A1BF]/10 px-3.5 py-1.5 rounded-full">
           Platform Features
         </span>
-        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#123D32]">
+        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#123D32] dark:text-white">
           Everything You Need to Drive Community Change
         </h2>
-        <p className="text-gray-600 text-sm sm:text-base">
+        <p className="text-gray-600 dark:text-gray-300 text-sm sm:text-base">
           Our platform equips organizers and volunteers with simple, modern
           tools to plan, join, and lead social initiatives.
         </p>
@@ -83,16 +83,16 @@ const Features = () => {
                   <div className="w-12 h-12 rounded-xl bg-[#EAF7EE] text-[#123D32] flex items-center justify-center text-2xl group-hover:bg-[#123D32] group-hover:text-white transition-colors duration-300">
                     <Icon />
                   </div>
-                  <span className="text-xs font-semibold px-2.5 py-1 rounded-md bg-gray-100 text-gray-600">
+                  <span className="text-xs font-semibold px-2.5 py-1 rounded-md bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300">
                     {feature.badge}
                   </span>
                 </div>
 
-                <h3 className="text-lg font-bold text-gray-900 group-hover:text-[#123D32] transition-colors mb-2">
+                <h3 className="text-lg font-bold text-gray-900 dark:text-white group-hover:text-[#123D32] dark:group-hover:text-[#15A1BF] transition-colors mb-2">
                   {feature.title}
                 </h3>
 
-                <p className="text-gray-600 text-sm leading-relaxed">
+                <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">
                   {feature.description}
                 </p>
               </div>

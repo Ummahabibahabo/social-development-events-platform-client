@@ -114,26 +114,26 @@ const UpcomingEventCard = ({ upcomingData }: UpcomingEventCardProps) => {
                 </div>
 
                 <div className="flex flex-1 flex-col space-y-4 p-5">
-                  <h2 className="text-xl font-semibold text-gray-800">
+                  <h2 className="text-xl font-semibold text-gray-800 dark:text-white">
                     {item.createEventData.title}
                   </h2>
 
-                  <p className="flex items-center gap-2 text-sm text-gray-600">
+                  <p className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-300">
                     <MdLocationOn className="text-lg text-[#168fa7]" />
                     {item.createEventData.location}
                   </p>
 
-                  <p className="flex items-center gap-2 text-sm text-gray-600">
+                  <p className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-300">
                     <MdCategory className="text-lg text-[#168fa7]" />
                     {item.createEventData.type}
                   </p>
 
-                  <p className="flex items-center gap-2 text-sm text-gray-600">
+                  <p className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-300">
                     <MdCalendarMonth className="text-lg text-[#168fa7]" />
                     {date}
                   </p>
 
-                  <p className="line-clamp-3 text-sm text-gray-600">
+                  <p className="line-clamp-3 text-sm text-gray-600 dark:text-gray-300">
                     {item.createEventData.description}
                   </p>
 

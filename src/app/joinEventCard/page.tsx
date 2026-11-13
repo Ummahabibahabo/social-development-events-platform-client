@@ -16,11 +16,17 @@ import { redirect } from "next/navigation";
 import { toast } from "react-toastify";
 interface JoinEventCardPageProps {
   getSingleData: EventTypeData;
+  date?: string;
 }
 
 const JoinEventCardPage = ({ getSingleData }: JoinEventCardPageProps) => {
   const { data: session } = authClient.useSession();
   const user = session?.user;
+
+  if (!getSingleData?.createEventData) {
+    return null;
+  }
+
   const date = new Date(getSingleData.createEventData.date).toLocaleDateString(
     "en-US",
     {

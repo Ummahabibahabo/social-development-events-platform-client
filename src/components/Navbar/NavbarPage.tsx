@@ -7,7 +7,7 @@ import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { FaRegUser } from "react-icons/fa";
 import { IoClose, IoMenuSharp } from "react-icons/io5";
-import { LuMoon } from "react-icons/lu";
+import { LuMoon, LuSun } from "react-icons/lu";
 import {
   MdEventAvailable,
   MdOutlineCreateNewFolder,
@@ -29,6 +29,20 @@ export const NavbarPage = () => {
   };
   const { data: session } = authClient.useSession();
   const user = session?.user;
+
+  const [theme, setTheme] = useState("light");
+
+  const handleThemeToggle = () => {
+    if (theme === "light") {
+      setTheme("dark");
+      document.documentElement.setAttribute("data-theme", "dark");
+      document.documentElement.classList.add("dark");
+    } else {
+      setTheme("light");
+      document.documentElement.setAttribute("data-theme", "light");
+      document.documentElement.classList.remove("dark");
+    }
+  };
   return (
     <nav className="flex justify-between items-center gap-3 relative w-full">
       {/* Mobile Menu Button and Logo */}
@@ -47,7 +61,7 @@ export const NavbarPage = () => {
               <Image src={LogoImg} alt="Kindroa Logo" width={30} height={30} />
             </span>
 
-            <p className="text-black text-[18px] sm:text-[20px] font-bold">
+            <p className="text-black dark:text-white text-[18px] sm:text-[20px] font-bold">
               Kindroa
             </p>
           </div>
@@ -61,7 +75,7 @@ export const NavbarPage = () => {
           className={`flex items-center gap-1.5 text-sm lg:text-[16px] ${
             pathname === "/upcomingEvents"
               ? "text-[#15A1BF] underline underline-offset-8"
-              : "text-black"
+              : "text-black dark:text-gray-200"
           }`}
         >
           <MdOutlineEventNote />
@@ -74,7 +88,7 @@ export const NavbarPage = () => {
             className={`flex items-center gap-1.5 text-sm lg:text-[16px] ${
               pathname === "/createEvent"
                 ? "text-[#15A1BF] underline underline-offset-8"
-                : "text-black"
+                : "text-black dark:text-gray-200"
             }`}
           >
             <MdOutlineCreateNewFolder />
@@ -87,7 +101,7 @@ export const NavbarPage = () => {
             className={`flex items-center gap-1.5 text-sm lg:text-[16px] ${
               pathname === "/my-joining-event"
                 ? "text-[#15A1BF] underline underline-offset-8"
-                : "text-black"
+                : "text-black dark:text-gray-200"
             }`}
           >
             <MdEventAvailable />
@@ -100,7 +114,7 @@ export const NavbarPage = () => {
             className={`flex items-center gap-1.5 text-sm lg:text-[16px] ${
               pathname === "/manageEvents"
                 ? "text-[#15A1BF] underline underline-offset-8"
-                : "text-black"
+                : "text-black dark:text-gray-200"
             }`}
           >
             <MdEventAvailable />
@@ -112,8 +126,15 @@ export const NavbarPage = () => {
       {/* Login and Theme Button */}
       <div className="flex items-center gap-2 sm:gap-4">
         {/* Theme Button */}
-        <button className="flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-full bg-white shadow-md transition-all duration-300 hover:bg-[#C5F2A5] hover:scale-110">
-          <LuMoon size={20} color="black" fill="white" strokeWidth={2.5} />
+        <button
+          onClick={handleThemeToggle}
+          className="flex h-10 w-10 items-center justify-center rounded-full bg-white shadow-md hover:bg-[#C5F2A5] hover:scale-105 transition cursor-pointer"
+        >
+          {theme === "dark" ? (
+            <LuSun size={20} className="text-yellow-500" />
+          ) : (
+            <LuMoon size={20} className="text-gray-800" />
+          )}
         </button>
 
         <div className="hidden md:flex">

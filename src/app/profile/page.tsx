@@ -96,10 +96,10 @@ const ProfilePage = () => {
     <div className="max-w-4xl mx-auto py-6 sm:py-10 px-4">
       {/* Title */}
       <div className="mb-8 text-center sm:text-left">
-        <h1 className="text-3xl sm:text-4xl font-extrabold text-[#123D32]">
+        <h1 className="text-3xl sm:text-4xl font-extrabold text-[#123D32] dark:text-white">
           My Profile
         </h1>
-        <p className="text-gray-500 mt-2 text-sm sm:text-base">
+        <p className="text-gray-500 dark:text-gray-400 mt-2 text-sm sm:text-base">
           View and update your personal details
         </p>
       </div>
@@ -124,8 +124,8 @@ const ProfilePage = () => {
 
             {/* Name & Email */}
             <div>
-              <h2 className="text-2xl font-bold text-gray-900">{user.name}</h2>
-              <p className="text-gray-500 text-sm mt-1">{user.email}</p>
+              <h2 className="text-2xl font-bold text-gray-900 dark:text-white">{user.name}</h2>
+              <p className="text-gray-500 dark:text-gray-400 text-sm mt-1">{user.email}</p>
             </div>
 
             {/* Edit / View Toggle Button */}
@@ -175,8 +175,8 @@ const ProfilePage = () => {
             {!isEditing ? (
               /* VIEW PROFILE */
               <div className="space-y-6">
-                <div className="border-b border-gray-100 pb-4 flex items-center justify-between">
-                  <h3 className="text-xl font-bold text-[#123D32]">
+                <div className="border-b border-gray-100 dark:border-gray-700 pb-4 flex items-center justify-between">
+                  <h3 className="text-xl font-bold text-[#123D32] dark:text-white">
                     Profile Information
                   </h3>
                   <button
@@ -189,45 +189,45 @@ const ProfilePage = () => {
 
                 <div className="space-y-4">
                   {/* Name */}
-                  <div className="flex items-start gap-4 p-4 rounded-2xl bg-gray-50 border border-gray-100">
-                    <div className="w-10 h-10 rounded-xl bg-white flex items-center justify-center text-[#123D32] shadow-xs">
+                  <div className="flex items-start gap-4 p-4 rounded-2xl bg-gray-50 dark:bg-gray-800 border border-gray-100 dark:border-gray-700">
+                    <div className="w-10 h-10 rounded-xl bg-white dark:bg-gray-700 flex items-center justify-center text-[#123D32] dark:text-[#C5F2A5] shadow-xs">
                       <MdOutlinePerson className="text-xl" />
                     </div>
                     <div>
                       <p className="text-xs font-semibold text-gray-400 uppercase">
                         Full Name
                       </p>
-                      <p className="text-base font-bold text-gray-800">
+                      <p className="text-base font-bold text-gray-800 dark:text-white">
                         {user.name}
                       </p>
                     </div>
                   </div>
 
                   {/* Email */}
-                  <div className="flex items-start gap-4 p-4 rounded-2xl bg-gray-50 border border-gray-100">
-                    <div className="w-10 h-10 rounded-xl bg-white flex items-center justify-center text-[#15A1BF] shadow-xs">
+                  <div className="flex items-start gap-4 p-4 rounded-2xl bg-gray-50 dark:bg-gray-800 border border-gray-100 dark:border-gray-700">
+                    <div className="w-10 h-10 rounded-xl bg-white dark:bg-gray-700 flex items-center justify-center text-[#15A1BF] shadow-xs">
                       <MdOutlineMail className="text-xl" />
                     </div>
                     <div>
                       <p className="text-xs font-semibold text-gray-400 uppercase">
                         Email Address
                       </p>
-                      <p className="text-base font-bold text-gray-800">
+                      <p className="text-base font-bold text-gray-800 dark:text-white">
                         {user.email}
                       </p>
                     </div>
                   </div>
 
                   {/* Profile Image URL */}
-                  <div className="flex items-start gap-4 p-4 rounded-2xl bg-gray-50 border border-gray-100">
-                    <div className="w-10 h-10 rounded-xl bg-white flex items-center justify-center text-amber-600 shadow-xs">
+                  <div className="flex items-start gap-4 p-4 rounded-2xl bg-gray-50 dark:bg-gray-800 border border-gray-100 dark:border-gray-700">
+                    <div className="w-10 h-10 rounded-xl bg-white dark:bg-gray-700 flex items-center justify-center text-amber-600 shadow-xs">
                       <MdOutlinePhotoCamera className="text-xl" />
                     </div>
                     <div className="min-w-0 flex-1">
                       <p className="text-xs font-semibold text-gray-400 uppercase">
                         Profile Picture URL
                       </p>
-                      <p className="text-xs font-mono text-gray-600 truncate mt-1">
+                      <p className="text-xs font-mono text-gray-600 dark:text-gray-300 truncate mt-1">
                         {user.image || "No picture URL"}
                       </p>
                     </div>
@@ -237,18 +237,18 @@ const ProfilePage = () => {
             ) : (
               /* UPDATE PROFILE FORM */
               <form onSubmit={handleUpdateProfile} className="space-y-6">
-                <div className="border-b border-gray-100 pb-4">
-                  <h3 className="text-xl font-bold text-[#123D32]">
+                <div className="border-b border-gray-100 dark:border-gray-700 pb-4">
+                  <h3 className="text-xl font-bold text-[#123D32] dark:text-white">
                     Update Profile
                   </h3>
-                  <p className="text-gray-500 text-xs sm:text-sm mt-0.5">
+                  <p className="text-gray-500 dark:text-gray-400 text-xs sm:text-sm mt-0.5">
                     Update your name and profile picture
                   </p>
                 </div>
 
                 {/* Name Input */}
                 <div>
-                  <label className="block text-sm font-bold text-gray-700 mb-2">
+                  <label className="block text-sm font-bold text-gray-700 dark:text-gray-200 mb-2">
                     Name
                   </label>
                   <input
@@ -256,13 +256,13 @@ const ProfilePage = () => {
                     name="name"
                     defaultValue={user.name || ""}
                     placeholder="Enter your name"
-                    className="w-full border border-gray-300 rounded-xl px-4 py-3 outline-none focus:border-[#123D32]"
+                    className="w-full border border-gray-300 dark:border-gray-600 rounded-xl px-4 py-3 outline-none focus:border-[#123D32]"
                   />
                 </div>
 
                 {/* Photo URL Input */}
                 <div>
-                  <label className="block text-sm font-bold text-gray-700 mb-2">
+                  <label className="block text-sm font-bold text-gray-700 dark:text-gray-200 mb-2">
                     Profile Picture URL
                   </label>
                   <input
@@ -270,20 +270,20 @@ const ProfilePage = () => {
                     name="image"
                     defaultValue={user.image || ""}
                     placeholder="Enter image URL"
-                    className="w-full border border-gray-300 rounded-xl px-4 py-3 outline-none focus:border-[#123D32]"
+                    className="w-full border border-gray-300 dark:border-gray-600 rounded-xl px-4 py-3 outline-none focus:border-[#123D32]"
                   />
                 </div>
 
                 {/* Email (Read Only) */}
                 <div>
-                  <label className="block text-sm font-bold text-gray-700 mb-2">
+                  <label className="block text-sm font-bold text-gray-700 dark:text-gray-200 mb-2">
                     Email (Cannot be changed)
                   </label>
                   <input
                     type="email"
                     readOnly
                     value={user.email || ""}
-                    className="w-full border border-gray-200 bg-gray-50 text-gray-500 rounded-xl px-4 py-3 outline-none cursor-not-allowed"
+                    className="w-full border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 text-gray-500 dark:text-gray-400 rounded-xl px-4 py-3 outline-none cursor-not-allowed"
                   />
                 </div>
 

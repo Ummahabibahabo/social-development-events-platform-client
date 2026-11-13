@@ -1,4 +1,3 @@
-
 "use client";
 
 import Link from "next/link";
@@ -61,16 +60,18 @@ const LoginPage = () => {
       toast.error(error.message);
     }
   };
-
+  const handleGoogleBtn = async () => {
+    const data = await authClient.signIn.social({
+      provider: "google",
+    });
+    console.log(data);
+  };
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50 px-4 py-10">
       <div className="w-full max-w-md">
-
         {/* Heading */}
         <div className="text-center mb-7">
-          <h1 className="text-3xl font-bold text-gray-800">
-            Welcome Back!
-          </h1>
+          <h1 className="text-3xl font-bold text-gray-800">Welcome Back!</h1>
           <p className="mt-2 text-gray-500">
             Sign in to make a difference in your community.
           </p>
@@ -79,7 +80,6 @@ const LoginPage = () => {
         {/* Login Form */}
         <form onSubmit={handleLoginBtn}>
           <fieldset className="fieldset bg-white shadow-xl border border-gray-200 rounded-2xl p-6 sm:p-8">
-
             {/* Email */}
             <label className="label font-bold text-gray-700 text-sm">
               Email Address
@@ -96,9 +96,7 @@ const LoginPage = () => {
             />
 
             {emailError && (
-              <p className="text-xs text-red-500 mt-1">
-                {emailError}
-              </p>
+              <p className="text-xs text-red-500 mt-1">{emailError}</p>
             )}
 
             {/* Password */}
@@ -122,14 +120,16 @@ const LoginPage = () => {
                 onClick={() => setShowPassword(!showPassword)}
                 className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500"
               >
-                {showPassword ? <FaEye className="text-2xl" /> :<FaEyeSlash className="text-2xl"/> }
+                {showPassword ? (
+                  <FaEye className="text-2xl" />
+                ) : (
+                  <FaEyeSlash className="text-2xl" />
+                )}
               </button>
             </div>
 
             {passwordError && (
-              <p className="text-xs text-red-500 mt-1">
-                {passwordError}
-              </p>
+              <p className="text-xs text-red-500 mt-1">{passwordError}</p>
             )}
 
             {/* Login Button */}
@@ -144,14 +144,13 @@ const LoginPage = () => {
             {/* Divider */}
             <div className="flex items-center gap-3 my-5">
               <div className="h-px flex-1 bg-gray-200"></div>
-              <span className="text-sm text-gray-400">
-                Or continue with
-              </span>
+              <span className="text-sm text-gray-400">Or continue with</span>
               <div className="h-px flex-1 bg-gray-200"></div>
             </div>
 
             {/* Google Login Button */}
             <button
+              onClick={handleGoogleBtn}
               type="button"
               className="btn w-full bg-white hover:bg-gray-50 text-gray-700 border border-gray-300 rounded-lg"
             >
@@ -179,7 +178,6 @@ const LoginPage = () => {
                   d="M24 48c6.48 0 11.93-2.13 15.9-5.89l-7.62-5.91c-2.12 1.42-4.84 2.26-8.28 2.26-5.9 0-10.92-4.22-12.82-9.87l-7.99 6.19C6.51 43.62 14.62 48 24 48z"
                 />
               </svg>
-
               Continue with Google
             </button>
 
@@ -193,10 +191,8 @@ const LoginPage = () => {
                 Register
               </Link>
             </p>
-
           </fieldset>
         </form>
-
       </div>
     </div>
   );

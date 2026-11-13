@@ -53,10 +53,10 @@ const Gallery = () => {
           <MdOutlinePhotoCamera />
           Moments of Impact
         </span>
-        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#123D32]">
+        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#123D32] dark:text-white">
           Community Service Gallery
         </h2>
-        <p className="text-gray-600 text-sm sm:text-base">
+        <p className="text-gray-600 dark:text-gray-300 text-sm sm:text-base">
           A glimpse into the real change created by our volunteers,
           changemakers, and compassionate communities across the country.
         </p>
