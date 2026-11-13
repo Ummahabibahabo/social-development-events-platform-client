@@ -14,6 +14,7 @@ import {
 } from "react-icons/md";
 import { redirect } from "next/navigation";
 import { toast } from "react-toastify";
+import { getTokenFromServer } from "../lib/getTokenFromServer";
 interface JoinEventCardPageProps {
   getSingleData: EventTypeData;
   date?: string;
@@ -46,10 +47,12 @@ const JoinEventCardPage = ({ getSingleData }: JoinEventCardPageProps) => {
       joinDescription,
     };
     console.log("Join Event Card", data);
+    const token = await getTokenFromServer();
     const res = await fetch("http://localhost:5000/join-event", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        authorization: `Bearer ${token}`,
       },
       body: JSON.stringify({ data }),
     });

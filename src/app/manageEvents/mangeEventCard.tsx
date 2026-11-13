@@ -8,6 +8,7 @@ import {
 } from "react-icons/md";
 import { toast } from "react-toastify";
 import EditManagementDialogPage from "./EditManagementDialog";
+import { getTokenFromServer } from "../lib/getTokenFromServer";
 
 interface MangeEventCardProps {
   data: {
@@ -28,10 +29,14 @@ const MangeEventCardPage = ({ data }: MangeEventCardProps) => {
   console.log("manageEvent", data);
   const event = data.createEventData;
   const handleDeleteButton = async () => {
+    const token = await getTokenFromServer();
     const res = await fetch(
       `http://localhost:5000/upcoming-event-by-delete/${data._id}`,
       {
         method: "DELETE",
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
       },
     );
     const DeleteData = await res.json();

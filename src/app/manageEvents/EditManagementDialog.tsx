@@ -12,6 +12,7 @@ import { redirect } from "next/navigation";
 import { MdEditNote, MdEventAvailable } from "react-icons/md";
 import { toast } from "react-toastify";
 import { authClient } from "../lib/auth-client";
+import { getTokenFromServer } from "../lib/getTokenFromServer";
 interface EditManagementDialogProps {
   data: {
     _id: string;
@@ -38,13 +39,14 @@ const EditManagementDialogPage = ({ data }: EditManagementDialogProps) => {
     const formData = new FormData(e.currentTarget);
     const createEventData = Object.fromEntries(formData.entries());
     console.log("Create Event Data", createEventData);
-
+    const token = await getTokenFromServer();
     const res = await fetch(
       `http://localhost:5000/upcoming-update/${enentId}`,
       {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
+          authorization: `Bearer ${token}`,
         },
         body: JSON.stringify({ createEventData }),
       },

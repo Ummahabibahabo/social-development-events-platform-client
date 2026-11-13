@@ -15,9 +15,18 @@ const ManageEventPage = async () => {
   });
 
   const email = session?.user?.email;
-
+  const jwtToken = await auth.api.getToken({
+    headers: await headers(),
+  });
+  const token = jwtToken?.token;
+  console.log(token);
   const res = await fetch(
     `http://localhost:5000/upcoming-event-by-email/${email}`,
+    {
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
+    },
   );
 
   const manageEventData = await res.json();

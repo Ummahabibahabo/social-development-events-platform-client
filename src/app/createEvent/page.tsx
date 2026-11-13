@@ -4,6 +4,7 @@ import React from "react";
 import { authClient } from "../lib/auth-client";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
+import { getTokenFromServer } from "../lib/getTokenFromServer";
 
 const CreateEventPage = () => {
   const router = useRouter();
@@ -19,19 +20,20 @@ const CreateEventPage = () => {
     const createEventData = Object.fromEntries(formData.entries());
 
     console.log("Create Event Data", createEventData);
-
+    const token = await getTokenFromServer();
     const res = await fetch("http://localhost:5000/create-event", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        authorization: `Bearer ${token}`,
       },
       body: JSON.stringify({ createEventData }),
     });
 
-    const data = await res.json();
-    console.log(data);
+    const result = await res.json();
+    console.log(result);
 
-    if (data) {
+    if (result) {
       toast.success("Created Event successful");
       router.push("/upcomingEvents");
     }

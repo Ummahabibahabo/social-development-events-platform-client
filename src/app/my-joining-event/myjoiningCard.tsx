@@ -9,9 +9,11 @@ import {
   MdVisibility,
 } from "react-icons/md";
 import EmptyMyJoiningEvent from "./emptyMyJoinigEvent";
-import { fetch } from "next/dist/client/components/segment-cache/fetch";
-import { redirect } from "next/navigation";
+
 import Link from "next/link";
+import { getTokenFromServer } from "../lib/getTokenFromServer";
+
+import { redirect } from "next/navigation";
 
 interface MyJoiningEventProps {
   myJoinEventData: {
@@ -79,15 +81,25 @@ const MyJoiningCard = ({ myJoinEventData }: MyJoiningEventProps) => {
               year: "numeric",
             });
             const handleDeleteButton = async () => {
+              const token = await getTokenFromServer();
+
               const res = await fetch(
                 `http://localhost:5000/my-join-event/${item._id}`,
                 {
                   method: "DELETE",
+                  headers: {
+                    Authorization: `Bearer ${token}`,
+                  },
                 },
               );
+
               const data = await res.json();
+
               console.log(data);
-              redirect("/my-joining-event");
+
+              if (data) {
+                redirect("/my-joining-event");
+              }
             };
             return (
               <div

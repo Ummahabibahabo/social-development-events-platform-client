@@ -2,6 +2,7 @@ import { headers } from "next/headers";
 import { auth } from "../lib/auth";
 
 import MyJoiningCard from "./myjoiningCard";
+import { getTokenFromServer } from "../lib/getTokenFromServer";
 
 const MyJoiningEvent = async () => {
   const session = await auth.api.getSession({
@@ -9,8 +10,8 @@ const MyJoiningEvent = async () => {
   });
 
   const email = session?.user?.email;
-
-  const res = await fetch(`http://localhost:5000/join-event/${email}`);
+  const token = await getTokenFromServer();
+  const res = await fetch(`http://localhost:5000/join-event/${email}`, {});
 
   const myJoinEventData = await res.json();
 
