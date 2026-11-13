@@ -1,4 +1,3 @@
-
 import JointEventPage from "@/app/joinEventCard/page";
 import { EventTypeData } from "@/components/types";
 import Image from "next/image";
@@ -25,29 +24,27 @@ interface UpcomingDetailsPageProps {
   }>;
 }
 
-const UpcomingDetailsPage = async ({
-  params,
-}: UpcomingDetailsPageProps) => {
+const UpcomingDetailsPage = async ({ params }: UpcomingDetailsPageProps) => {
   const { id } = await params;
 
   const res = await fetch(
-    `http://localhost:5000/upcoming-event/${id}`
+    `${process.env.NEXT_PUBLIC_API_URL}/upcoming-event/${id}`,
   );
 
   const getSingleData: EventTypeData = await res.json();
 
-  const date = new Date(
-    getSingleData.createEventData.date
-  ).toLocaleDateString("en-US", {
-    month: "long",
-    day: "numeric",
-    year: "numeric",
-  });
+  const date = new Date(getSingleData.createEventData.date).toLocaleDateString(
+    "en-US",
+    {
+      month: "long",
+      day: "numeric",
+      year: "numeric",
+    },
+  );
 
   return (
     <div className="min-h-screen bg-[#f3f7f9] pb-20">
       <div className="mx-auto max-w-6xl px-4 pt-8 sm:px-6 lg:px-8">
-
         {/* Back Navigation */}
         <Link
           href="/upcomingEvents"
@@ -92,9 +89,7 @@ const UpcomingDetailsPage = async ({
             </div>
 
             <div className="hidden rounded-xl border border-white/20 bg-white/10 px-4 py-3 text-right text-white backdrop-blur-md sm:block">
-              <p className="text-xs font-medium text-white/70">
-                Event Date
-              </p>
+              <p className="text-xs font-medium text-white/70">Event Date</p>
               <p className="mt-1 text-sm font-bold">{date}</p>
             </div>
           </div>
@@ -132,9 +127,7 @@ const UpcomingDetailsPage = async ({
               </div>
 
               <div>
-                <p className="font-bold text-slate-800">
-                  Make an Impact
-                </p>
+                <p className="font-bold text-slate-800">Make an Impact</p>
                 <p className="mt-1 text-xs text-slate-500">
                   Be part of something good
                 </p>
@@ -145,10 +138,8 @@ const UpcomingDetailsPage = async ({
 
         {/* Main Content */}
         <div className="mt-8 grid grid-cols-1 items-start gap-7 lg:grid-cols-3">
-
           {/* Left Content */}
           <div className="space-y-7 lg:col-span-2">
-
             {/* About Event */}
             <div className="relative overflow-hidden rounded-3xl border border-slate-200/70 bg-white p-7 shadow-sm sm:p-9">
               <div className="absolute -right-16 -top-16 h-48 w-48 rounded-full bg-[#f0fafb]" />
@@ -194,7 +185,6 @@ const UpcomingDetailsPage = async ({
               </div>
 
               <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-
                 {/* Volunteer */}
                 <div className="group rounded-2xl border border-[#dceff2] bg-[#f5fafb] p-5 transition-all duration-300 hover:-translate-y-1 hover:border-[#acdce4] hover:shadow-md">
                   <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-[#dff1f4] text-[#168fa7] transition duration-300 group-hover:bg-[#168fa7] group-hover:text-white">
@@ -231,9 +221,7 @@ const UpcomingDetailsPage = async ({
                     <MdFavorite size={25} />
                   </div>
 
-                  <h3 className="font-bold text-slate-800">
-                    Spread Kindness
-                  </h3>
+                  <h3 className="font-bold text-slate-800">Spread Kindness</h3>
 
                   <p className="mt-2 text-sm leading-6 text-slate-500">
                     Make someone's day better through your contribution.
@@ -246,9 +234,7 @@ const UpcomingDetailsPage = async ({
                     <MdCheckCircle size={25} />
                   </div>
 
-                  <h3 className="font-bold text-slate-800">
-                    Real Impact
-                  </h3>
+                  <h3 className="font-bold text-slate-800">Real Impact</h3>
 
                   <p className="mt-2 text-sm leading-6 text-slate-500">
                     Every small effort can create a positive change.
@@ -300,7 +286,6 @@ const UpcomingDetailsPage = async ({
 
             {/* Additional Event Information */}
             <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
-
               {/* Quick Overview */}
               <div className="rounded-3xl border border-slate-200/70 bg-white p-6 shadow-sm transition-all duration-300 hover:shadow-md">
                 <div className="mb-5 flex items-center gap-3">
@@ -320,23 +305,23 @@ const UpcomingDetailsPage = async ({
 
                 <div className="space-y-4">
                   <div className="flex items-center gap-3">
-                    <MdCalendarMonth className="shrink-0 text-[#168fa7]" size={21} />
+                    <MdCalendarMonth
+                      className="shrink-0 text-[#168fa7]"
+                      size={21}
+                    />
                     <div>
-                      <p className="text-xs text-slate-400">
-                        Event Date
-                      </p>
-                      <p className="text-sm font-bold text-slate-700">
-                        {date}
-                      </p>
+                      <p className="text-xs text-slate-400">Event Date</p>
+                      <p className="text-sm font-bold text-slate-700">{date}</p>
                     </div>
                   </div>
 
                   <div className="flex items-center gap-3">
-                    <MdLocationOn className="shrink-0 text-[#168fa7]" size={21} />
+                    <MdLocationOn
+                      className="shrink-0 text-[#168fa7]"
+                      size={21}
+                    />
                     <div className="min-w-0">
-                      <p className="text-xs text-slate-400">
-                        Location
-                      </p>
+                      <p className="text-xs text-slate-400">Location</p>
                       <p className="break-words text-sm font-bold text-slate-700">
                         {getSingleData.createEventData.location}
                       </p>
@@ -346,9 +331,7 @@ const UpcomingDetailsPage = async ({
                   <div className="flex items-center gap-3">
                     <MdCategory className="shrink-0 text-[#168fa7]" size={21} />
                     <div>
-                      <p className="text-xs text-slate-400">
-                        Category
-                      </p>
+                      <p className="text-xs text-slate-400">Category</p>
                       <p className="text-sm font-bold text-slate-700">
                         {getSingleData.createEventData.type}
                       </p>
@@ -433,12 +416,8 @@ const UpcomingDetailsPage = async ({
           {/* Right Sidebar */}
           <div className="min-w-0">
             {/* Join Event Card */}
-            <JointEventPage
-              getSingleData={getSingleData}
-              date={date}
-            />
+            <JointEventPage getSingleData={getSingleData} date={date} />
           </div>
-
         </div>
       </div>
     </div>
