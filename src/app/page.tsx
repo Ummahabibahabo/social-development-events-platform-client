@@ -6,7 +6,7 @@ import Newsletter from "@/components/Home/Newsletter";
 import Footer from "@/components/Footer/Footer";
 
 const Home = async () => {
-  const res = await fetch("http://localhost:5000/recent-events", {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/recent-events`, {
     cache: "no-store",
   });
   const recentEvents = await res.json();

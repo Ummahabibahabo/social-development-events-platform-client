@@ -84,7 +84,7 @@ const MyJoiningCard = ({ myJoinEventData }: MyJoiningEventProps) => {
               const token = await getTokenFromServer();
 
               const res = await fetch(
-                `http://localhost:5000/my-join-event/${item._id}`,
+                `${process.env.NEXT_PUBLIC_API_URL}/my-join-event/${item._id}`,
                 {
                   method: "DELETE",
                   headers: {

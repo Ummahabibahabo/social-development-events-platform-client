@@ -41,7 +41,7 @@ const EditManagementDialogPage = ({ data }: EditManagementDialogProps) => {
     console.log("Create Event Data", createEventData);
     const token = await getTokenFromServer();
     const res = await fetch(
-      `http://localhost:5000/upcoming-update/${enentId}`,
+      `${process.env.NEXT_PUBLIC_API_URL}/upcoming-update/${enentId}`,
       {
         method: "PATCH",
         headers: {

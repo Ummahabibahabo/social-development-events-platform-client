@@ -48,7 +48,7 @@ const JoinEventCardPage = ({ getSingleData }: JoinEventCardPageProps) => {
     };
     console.log("Join Event Card", data);
     const token = await getTokenFromServer();
-    const res = await fetch("http://localhost:5000/join-event", {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/join-event`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

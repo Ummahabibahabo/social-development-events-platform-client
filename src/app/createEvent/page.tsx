@@ -21,7 +21,7 @@ const CreateEventPage = () => {
 
     console.log("Create Event Data", createEventData);
     const token = await getTokenFromServer();
-    const res = await fetch("http://localhost:5000/create-event", {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_UTL}/create-event`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

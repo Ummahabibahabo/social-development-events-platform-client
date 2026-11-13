@@ -31,7 +31,7 @@ const MangeEventCardPage = ({ data }: MangeEventCardProps) => {
   const handleDeleteButton = async () => {
     const token = await getTokenFromServer();
     const res = await fetch(
-      `http://localhost:5000/upcoming-event-by-delete/${data._id}`,
+      `${process.env.NEXT_PUBLIC_API_URL}/upcoming-event-by-delete/${data._id}`,
       {
         method: "DELETE",
         headers: {

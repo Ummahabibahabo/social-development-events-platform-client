@@ -21,7 +21,7 @@ const ManageEventPage = async () => {
   const token = jwtToken?.token;
   console.log(token);
   const res = await fetch(
-    `http://localhost:5000/upcoming-event-by-email/${email}`,
+    `${process.env.NEXT_PUBLIC_API_URL}/upcoming-event-by-email/${email}`,
     {
       headers: {
         authorization: `Bearer ${token}`,
