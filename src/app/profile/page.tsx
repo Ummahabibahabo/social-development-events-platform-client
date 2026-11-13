@@ -16,6 +16,7 @@ import { getTokenFromServer } from "../lib/getTokenFromServer";
 
 const ProfilePage = () => {
   const router = useRouter();
+
   const { data: session, isPending } = authClient.useSession();
   const user = session?.user;
 
@@ -25,7 +26,13 @@ const ProfilePage = () => {
   const handleUpdateProfile = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
+    if (!user?.email) {
+      toast.error("User email not found");
+      return;
+    }
+
     const formData = new FormData(e.currentTarget);
+
     const name = formData.get("name") as string;
     const image = formData.get("image") as string;
 
@@ -44,6 +51,7 @@ const ProfilePage = () => {
         return;
       }
 
+      // Update Better Auth user
       const { error } = await authClient.updateUser({
         name: name.trim(),
         image: image.trim(),
@@ -54,13 +62,9 @@ const ProfilePage = () => {
         return;
       }
 
-      if (!user?.email) {
-        toast.error("User email not found");
-        return;
-      }
-
+      // Update MongoDB user collection
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/${user.email}`,
+        `${process.env.NEXT_PUBLIC_API_URL}/update-profile/${user.email}`,
         {
           method: "PATCH",
           headers: {
@@ -87,6 +91,7 @@ const ProfilePage = () => {
       }
 
       toast.success("Profile updated successfully!");
+
       setIsEditing(false);
       router.refresh();
     } catch (error) {
